@@ -3,42 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karanlık Vardiya</title>
+    <title>Karanlık Vardiya v2</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="theme-dark">
 
     <div id="game-container">
+        <!-- ANA MENÜ -->
         <div id="menu-screen" class="screen">
-            <h1 id="title-text">Karanlık Vardiya</h1>
-            <button id="btn-play" onclick="startGame()">Oyna</button>
-            <button id="btn-settings" onclick="showSettings()">Ayarlar</button>
+            <h1 data-i18n="Karanlık Vardiya">Karanlık Vardiya</h1>
+            <button onclick="startGame()" data-i18n="Oyna">Oyna</button>
+            <button onclick="showSettings()" data-i18n="Ayarlar">Ayarlar</button>
         </div>
 
+        <!-- AYARLAR -->
         <div id="settings-screen" class="screen hidden">
-            <h1 id="settings-title">Ayarlar</h1>
-            <button id="btn-theme" onclick="toggleTheme()">Tema: Karanlık</button>
-            <button id="btn-lang" onclick="toggleLang()">Dil: Türkçe</button>
-            <button id="btn-back" onclick="showMenu()">Geri Dön</button>
+            <h1 data-i18n="Ayarlar">Ayarlar</h1>
+            <button id="btn-theme" onclick="toggleTheme()" data-i18n="Tema Değiştir">Tema Değiştir</button>
+            
+            <div class="lang-selector">
+                <label data-i18n="Dil Seçin:">Dil Seçin:</label>
+                <select id="lang-select" onchange="changeLanguage()">
+                    <option value="tr">Türkçe</option>
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="de">Deutsch</option>
+                    <option value="ru">Русский</option>
+                    <option value="ja">日本語</option>
+                </select>
+            </div>
+            
+            <button onclick="showMenu()" data-i18n="Geri Dön">Geri Dön</button>
         </div>
 
+        <!-- OYUN EKRANI -->
         <div id="game-screen" class="screen hidden">
-            <h2 id="cam-text">Kamera 1 - Ofis</h2>
-            <div id="camera-view">
-                <span id="monster-warning" class="hidden">👀 YARATIK BURADA!</span>
+            <div id="hud">
+                <div class="hud-item"><span data-i18n="Saat:">Saat:</span> <span id="time-display">12:00 AM</span></div>
+                <div class="hud-item"><span data-i18n="Enerji:">Enerji:</span> %<span id="power-display">100</span></div>
             </div>
-            <div class="controls">
-                <button onclick="changeCam(1)">Cam 1</button>
-                <button onclick="changeCam(2)">Cam 2</button>
-                <button onclick="changeCam(3)">Cam 3</button>
-                <button onclick="changeCam(4)">Cam 4</button>
-                <button onclick="changeCam(5)">Cam 5</button>
+
+            <!-- Ofis Görünümü -->
+            <div id="office-view">
+                <button id="btn-door" onclick="toggleDoor()" data-i18n="Kapı: AÇIK" class="door-open">Kapı: AÇIK</button>
+                <div id="office-center" data-i18n="OFİS">OFİS</div>
+                <button id="btn-tablet" onclick="toggleTablet()" data-i18n="Kameraları Aç">Kameraları Aç</button>
             </div>
-            <button id="btn-exit" onclick="showMenu()" style="margin-top:20px; background:red;">Çıkış (ESC)</button>
+
+            <!-- Kamera Tableti -->
+            <div id="tablet-view" class="hidden">
+                <h2 id="cam-text">Kamera 1</h2>
+                <div id="camera-screen">
+                    <div class="static"></div>
+                    <span id="monster-warning" class="hidden" data-i18n="GÖLGE YAKLAŞIYOR!">GÖLGE YAKLAŞIYOR!</span>
+                </div>
+                <div class="controls">
+                    <button onclick="changeCam(1)">Cam 1</button>
+                    <button onclick="changeCam(2)">Cam 2</button>
+                    <button onclick="changeCam(3)">Cam 3</button>
+                    <button onclick="changeCam(4)">Cam 4</button>
+                    <button onclick="changeCam(5)">Cam 5</button>
+                </div>
+                <button onclick="toggleTablet()" class="close-tablet" data-i18n="Tableti Kapat">Tableti Kapat</button>
+            </div>
+            
+            <button onclick="quitGame()" class="quit-btn" data-i18n="Çıkış">Çıkış</button>
         </div>
 
+        <!-- OYUN SONU EKRANLARI -->
         <div id="jumpscare-screen" class="screen hidden">
-            <h1 id="jumpscare-text">OYUN BİTTİ!</h1>
+            <h1 data-i18n="OYUN BİTTİ!">OYUN BİTTİ!</h1>
+        </div>
+        <div id="win-screen" class="screen hidden">
+            <h1 data-i18n="SABAH OLDU! KAZANDIN!">SABAH OLDU! KAZANDIN!</h1>
         </div>
     </div>
 
