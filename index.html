@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karanlık Vardiya</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark">
+
+    <div id="game-container">
+        <div id="menu-screen" class="screen">
+            <h1 id="title-text">Karanlık Vardiya</h1>
+            <button id="btn-play" onclick="startGame()">Oyna</button>
+            <button id="btn-settings" onclick="showSettings()">Ayarlar</button>
+        </div>
+
+        <div id="settings-screen" class="screen hidden">
+            <h1 id="settings-title">Ayarlar</h1>
+            <button id="btn-theme" onclick="toggleTheme()">Tema: Karanlık</button>
+            <button id="btn-lang" onclick="toggleLang()">Dil: Türkçe</button>
+            <button id="btn-back" onclick="showMenu()">Geri Dön</button>
+        </div>
+
+        <div id="game-screen" class="screen hidden">
+            <h2 id="cam-text">Kamera 1 - Ofis</h2>
+            <div id="camera-view">
+                <span id="monster-warning" class="hidden">👀 YARATIK BURADA!</span>
+            </div>
+            <div class="controls">
+                <button onclick="changeCam(1)">Cam 1</button>
+                <button onclick="changeCam(2)">Cam 2</button>
+                <button onclick="changeCam(3)">Cam 3</button>
+                <button onclick="changeCam(4)">Cam 4</button>
+                <button onclick="changeCam(5)">Cam 5</button>
+            </div>
+            <button id="btn-exit" onclick="showMenu()" style="margin-top:20px; background:red;">Çıkış (ESC)</button>
+        </div>
+
+        <div id="jumpscare-screen" class="screen hidden">
+            <h1 id="jumpscare-text">OYUN BİTTİ!</h1>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
